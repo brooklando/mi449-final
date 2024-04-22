@@ -73,7 +73,7 @@ const MemeGenerator = () => {
 
   /*returning from functions to html structure*/
   return (
-    <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg bg-opacity-20 overflow-hidden mt-8">
+    <div className="max-w-sm mx-auto bg-white shadow-lg rounded-lg bg-opacity-20 overflow-hidden mt-8">
       <div className="p-4 text-center">
         <h1 className="text-3xl mb-4 font-semibold text-white drop-shadow-md">Useless Meme Generator</h1>
         {meme && (
