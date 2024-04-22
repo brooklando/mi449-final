@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import refreshIcon from './images/refresh-btn.png';
-import './App.css';
 import WebTitle from './Title';
-
+import ParticlesComponent from './components/particles';
 
 /*fact generator*/
 const RandomFactGenerator = () => {
@@ -12,6 +11,7 @@ const RandomFactGenerator = () => {
     fetchFact();
   }, []);
 
+/*fetch api, if error occurs display error in console*/
   const fetchFact = async () => {
     try {
       const response = await fetch('https://uselessfacts.jsph.pl/api/v2/facts/random');
@@ -22,16 +22,17 @@ const RandomFactGenerator = () => {
     }
   };
 
+/*repeat fetching for new facts*/
   const handleNewFactClick = () => {
     fetchFact();
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white shadow-md rounded-lg bg-opacity-80 overflow-hidden mt-8">
+    <div className="max-w-xl mx-auto bg-white shadow-lg rounded-lg bg-opacity-20 overflow-hidden mt-8">
       <div className="p-4 text-center">
-        <h1 className="text-3xl mb-4 font-semibold text-white drop-shadow">Useless Fact Generator</h1>
-        <div className="rounded border border-gray-300 bg-white bg-opacity-85 p-4 mb-4">
-          <p className="text-lg">{fact}</p>
+        <h1 className="text-3xl mb-4 font-semibold text-white drop-shadow-md">Useless Fact Generator</h1>
+        <div className="rounded border border-gray-300 bg-gray bg-opacity-40 p-4 mb-4">
+          <p className="text-2xl font-semibold text-white drop-shadow-lg">{fact}</p>
         </div>
         <img
           src={refreshIcon}
@@ -65,18 +66,20 @@ const MemeGenerator = () => {
     }
   };
 
+/*repeat fetching for new images*/
   const handleNewMemeClick = () => {
     fetchMeme();
   };
 
+  /*returning from functions to html structure*/
   return (
-    <div className="max-w-md mx-auto bg-white shadow-md rounded-lg bg-opacity-80 overflow-hidden mt-8">
+    <div className="max-w-lg mx-auto bg-white shadow-lg rounded-lg bg-opacity-20 overflow-hidden mt-8">
       <div className="p-4 text-center">
-        <h1 className="text-3xl mb-4 font-semibold text-white drop-shadow">Useless Meme Generator</h1>
+        <h1 className="text-3xl mb-4 font-semibold text-white drop-shadow-md">Useless Meme Generator</h1>
         {meme && (
           <div className="mb-4">
             <img src={meme.url} alt="Meme" className="mx-auto mb-2" />
-            <p className="text-lg">{meme.name}</p>
+            <p className="text-2xl font-semibold text-white">{meme.name}</p>
           </div>
         )}
         <img
@@ -92,12 +95,18 @@ const MemeGenerator = () => {
   );
 };
 
+/*creating webpage with imports*/
 const App = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <WebTitle />
-      <RandomFactGenerator />
-      <MemeGenerator />
+    <div className='App'>
+      <ParticlesComponent />
+      <div className="relative z-20">
+        <div className="flex flex-col items-center justify-center min-h-screen">
+          <WebTitle />
+          <RandomFactGenerator />
+          <MemeGenerator />
+        </div>
+      </div>
     </div>
   );
 };
